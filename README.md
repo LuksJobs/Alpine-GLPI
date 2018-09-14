@@ -88,7 +88,7 @@ Configuração de produção com o GLPI já instalado com o FusionInventory e o 
 ```
 services:
   glpi:
-    image: turgon37/glpi
+    image: luksjobs/glpi
     environment:
       - GLPI_REMOVE_INSTALLER=yes
       - 'GLPI_INSTALL_PLUGINS=fusioninventory|https://github.com/fusioninventory/fusioninventory-for-glpi/releases/download/glpi9.2%2B1.0/glpi-fusioninventory-9.2.1.0.tar.bz2'

@@ -7,11 +7,11 @@
 
 class DB extends DBmysql {
    #adicionar host do banco;
-   public $dbhost     = '10.16.41.1:32772'; 
+   public $dbhost     = 'user do banco'; 
    #adicionar usuário do banco;
    public $dbuser     = 'glpiadmin';
    #adicionar senha do usuário do banco;
-   public $dbpassword = 'ult%4032XT';
+   public $dbpassword = 'senhadobanco';
    #adicionar schema do banco;
    public $dbdefault  = 'glpi';
 }

@@ -1,5 +1,7 @@
+<center><img src="https://glpi-project.org/wp-content/uploads/2017/03/logo-glpi-bleu-1.png" alt="logo"></center>
+
 # Alpine-GLPI
-Alpine Linux é uma Distribuição Linux baseada em musl e BusyBox, originalmente projetado para usuários avançados que apreciam segurança, simplicidade e eficiência no uso de recursos. O GLPI é uma ferramenta de software ITSM gratuita e de código aberto que ajuda você a planejar e gerenciar mudanças de TI de maneira fácil, facilita na resolução de problemas eficientemente.
+Esse container utiliza o <b>Alpine Linux</b> que é uma Distribuição Linux baseada em Musl e BusyBox, originalmente projetado para usuários avançados que apreciam segurança, simplicidade e eficiência no uso de recursos. O GLPI é uma ferramenta de software ITSM gratuita e de código aberto que ajuda você a planejar e gerenciar mudanças de TI de maneira fácil, facilita na resolução de problemas eficientemente.
 
 • Alpine: https://pkgs.alpinelinux.org/packages
 <br>• GLPI: https://glpi-project.org/</br>
@@ -41,7 +43,8 @@ Esta imagem considera essas variáveis como parâmetros:
 <td>Ative a execução interna do cron.php</td>
 </tr></tbody></table>
 
-• A variável <b>GLPI_INSTALL_PLUGINS</b> deve conter a lista de plugins a serem instalados (download) antes de iniciar o glpi. Esta variável de ambiente é uma lista separada por vírgula de definições de plug-ins. Cada definição de plugin deve ser assim "PLUGINNAME | URL". O PLUGINNAME é o nome da primeira pasta no arquivo do plugin e será o nome do glpi do plugin. O URL é o URL completo para baixar o plug-in. Esta url pode conter algumas extensões de arquivo compactadas, em alguns casos o script do instalador não poderá extraí-la, assim você pode criar um problema especificando a extensão de arquivo não manipulada. Esses dois itens são separados por um símbolo de pipe.
+<br>• A variável <b>GLPI_INSTALL_PLUGINS</b> deve conter a lista de plugins a serem instalados (download) antes de iniciar o glpi. Esta variável de ambiente é uma lista separada por vírgula de definições de plug-ins. Cada definição de plugin deve ser assim "PLUGINNAME | URL". O PLUGINNAME é o nome da primeira pasta no arquivo do plugin e será o nome do glpi do plugin. O URL é o URL completo para baixar o plug-in. </br>
+<br>• Esta url pode conter algumas extensões de arquivo compactadas, em alguns casos o script do instalador não poderá extraí-la, assim você pode criar um problema especificando a extensão de arquivo não manipulada. Esses dois itens são separados por um símbolo de pipe.</br>
 <br>• Para summurize, a variável <b>GLPI_INSTALL_PLUGINS</b> deve seguir o seguinte esqueleto GLPI_INSTALL_PLUGINS = "name1 | url1, name2 | url2" Para melhor exemplo, veja no final deste arquivo.</br>
 <br>• Os volumes a seguir são expostos por esta imagem:</br>
 <table>
@@ -69,21 +72,21 @@ Utilizaremos o no Travis no arquivo ".travis.yml" para iniciar o Docker quando c
 
 ## Clonando ou baixando o repositório:
 
-```$ docker build -t alpine/glpi .```
+```$ docker build -t luksjobs/glpi .```
 
 # Deploy do Container
 Na primeira vez que você executar essa imagem, defina a variável GLPI_REMOVE_INSTALLER como 'no' e, depois dessa primeira instalação, defina como 'yes' para remover o instalador. 
 
 ### Sem link de banco de dados (você pode usar um endereço IP ou um nome de domínio na interface gŕafica do instalador)
 
-```$ docker run --name glpi --publish 8000:80 --volume data-glpi:/var/www/files --volume data-glpi-config:/var/www/config alpine/glpi```
+```$ docker run --name glpi --publish 8000:80 --volume data-glpi:/var/www/files --volume data-glpi-config:/var/www/config luksjobs/glpi```
 
 ### Com link de banco de dados (se você tiver algum MySQL / MariaDB como um contêiner docker)
 
-```$ docker run --name glpi --publish 8000:80 --volume data-glpi:/var/www/files --volume data-glpi-config:/var/www/config --link seubancodedados:mysql alpine/glpi```
+```$ docker run --name glpi --publish 8000:80 --volume data-glpi:/var/www/files --volume data-glpi-config:/var/www/config --link seubancodedados:mysql luksjobs/glpi```
 
 ### Exemplos de configuração específico do Docker-compose
-Configuração de produção com o GLPI já instalado com o FusionInventory e o plug-in do painel:
+Configuração de produção com o GLPI já instalado com o Fusion Inventory e o plug-in do painel:
 
 ```
 services:
